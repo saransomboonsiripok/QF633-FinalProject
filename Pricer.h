@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cmath>
+#include <memory>
 
 #include "Trade.h"
 #include "TreeProduct.h"

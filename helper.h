@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <locale> // tolower
-
+#include <algorithm>
 
 using namespace std;
 
