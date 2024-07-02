@@ -23,4 +23,5 @@ std::ostream& operator<<(std::ostream& os, const Date& d);
 std::istream& operator>>(std::istream& is, Date& d);
 Date dateAddTenor(const Date& start, const string& tenorStr);
 
+
 #endif

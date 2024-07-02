@@ -32,7 +32,7 @@ public:
 class EurOptFactory : public TradeFactory {
 public:
     std::shared_ptr<Trade> createTrade(std::string underlying, Date start, Date end, double notional, double strike, double freq, OptionType opt) {
-        return std::make_shared<EuropeanOption>(); //implement this
+        return std::make_shared<EuropeanOption>(opt, strike, end, underlying); //implement this
     }
 };
 
@@ -40,6 +40,6 @@ public:
 class AmericanOptFactory : public TradeFactory {
 public:
     std::shared_ptr<Trade> createTrade(std::string underlying, Date start, Date end, double notional, double strike, double freq, OptionType opt) {
-        return std::make_shared<AmericanOption>(); //implement this
+        return std::make_shared<AmericanOption>(opt, strike, end, underlying); //implement this
     }
 };
