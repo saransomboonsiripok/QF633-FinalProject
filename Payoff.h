@@ -17,7 +17,7 @@ namespace PAYOFF
       case BinaryPut:
 	return S <= strike ? 1 : 0;
       default:
-	throw "unsupported optionType";
+  throw "unsupported optionType";
       }
   }
 
