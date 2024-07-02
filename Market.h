@@ -62,11 +62,13 @@ public:
   void addCurve(const std::string& curveName, const RateCurve& curve);//implement this
   void addVolCurve(const std::string& curveName, const VolCurve& curve);//implement this
   void addBondPrice(const std::string& bondName, double price);//implement this
-  void addVolCurve(const std::string& stockName, double price);//implement this
+  void addStockPrice(const std::string& stockName, double price);//implement this
+
   
   inline void shockPrice(const string& underlying, double shock) { stockPrices[underlying] +=shock; }
-  inline RateCurve getCurve(const string& name) { return curves[name]; };
-  inline VolCurve getVolCurve(const string& name) { return vols[name]; };
+  inline const RateCurve getCurve(const string& name) const { return curves.at(name); };
+  inline const VolCurve getVolCurve(const string& name) const { return vols.at(name); };
+  inline auto getStockPrice() const {return stockPrices;};
 
 
 private:

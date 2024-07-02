@@ -8,6 +8,7 @@
 #include <locale> // tolower
 #include <algorithm>
 
+
 using namespace std;
 
 void inline readFromFile(const string& fileName, string& outPut)
