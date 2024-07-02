@@ -1,6 +1,10 @@
 #include <cmath>
 #include "Pricer.h"
-
+#include "Bond.h"
+#include "Swap.h"
+#include "Market.h"
+#include <ctime>
+#include <iomanip>
 
 double Pricer::Price(const Market& mkt, std::shared_ptr<Trade> trade) 
 {
@@ -23,9 +27,15 @@ double BinomialTreePricer::PriceTree(const Market& mkt, const TreeProduct& trade
   double T = trade.GetExpiry() - mkt.asOf;
   double dt = T / nTimeSteps;
   double stockPrice, vol, rate;
-  /*
-  get these data for the deal from market object
-  */
+  string ticker = trade.getUnderlying();
+  stockPrice = mkt.getStockPrice()[ticker];
+  int year_diff = trade.GetExpiry().year - mkt.asOf.year;
+  int month_diff = trade.GetExpiry().month - mkt.asOf.month;
+  int day_diff = trade.GetExpiry().day - mkt.asOf.day;
+  double period = (12 * year_diff) + (month_diff) + (day_diff / 30);
+  vol = mkt.getVolCurve("volatility").getVol(Date(0, period, 0));
+  rate = mkt.getCurve("usd-sofr").getRate(Date(0,period,0));
+
   ModelSetup(stockPrice, vol, rate, dt);
   
   // initialize

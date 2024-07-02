@@ -3,9 +3,9 @@
 //this function return the year franction between 2 date object
 double operator-(const Date& d1, const Date& d2)
 {
-  int yearDiff = d1.year - d2.year;
+  int yearDiff = (d1.year - d2.year);
   int monthDiff = (d1.month - d2.month);
-  int dayDiff = d1.day - d2.day;
+  int dayDiff = (d1.day - d2.day);
   return yearDiff + monthDiff / 12.0 + dayDiff / 360.0;
 };
 
@@ -75,6 +75,9 @@ Date dateAddTenor(const Date& start, const string& tenorStr)
       newdate.year +=1;
       newMonth = newMonth-12;
       newdate.month=newMonth;
+    }
+    else {
+      newdate.month = newMonth;
     }
   }
   else if(tenorUnit =='Y'){

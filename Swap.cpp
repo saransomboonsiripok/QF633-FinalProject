@@ -39,11 +39,13 @@ double Swap::getAnnuity() const
 double Swap::Pv(const Market& mkt) const
 {
   //using cash flow discunting
-  auto thisMkt = const_cast<Market&>(mkt);
+  //auto thisMkt = const_cast<Market&>(mkt);
   double fixPv = 0;
-
-  auto rateCurve = thisMkt.getCurve("usd-sofr");
-  double df = rateCurve.getDf(maturityDate);
+  //std::cout << "Swap Schedule Size: " << swapSchedule.size() << std::endl;
+  auto rateCurve = mkt.getCurve("usd-sofr");
+  double tenor_raw = ((maturityDate.day - mkt.asOf.day)/30) + (maturityDate.month - mkt.asOf.month) + ((maturityDate.year - mkt.asOf.year) * 12);
+  Date tenor = Date(0, tenor_raw, 0);
+  double df = rateCurve.getDf(tenor);
   double fltPv = (-notional + notional * df);
   for (auto& dt: swapSchedule) {
     if (dt == startDate)
