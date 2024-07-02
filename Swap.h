@@ -22,6 +22,11 @@ public:
     double Pv(const Market& mkt) const; 
     double getAnnuity() const; //implement this in a cpp file
     void generateSwapSchedule();
+    Date getMaturity() const {return maturityDate;};
+    Date getStarting() const {return startDate;};
+    double getNotional() const {return notional;};
+    double getTraderate() const {return tradeRate;};
+    int getFrequency() const {return frequency;};
 
 private:
     string underlying;
